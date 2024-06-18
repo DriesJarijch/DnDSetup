@@ -17,39 +17,44 @@ class _CharacterReorder extends State<CharacterListPage> {
         centerTitle: true,
         title: const Text('Your Characters'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        leading: ElevatedButton(
-          onPressed: () {
-            int len = boxCharacters.length;
-            //print(len);
-            for (int index = 0; index < len; index++) {
-              //print(boxCharacters.getAt(0).name);
-              boxCharacters.deleteAt(0);
-            }
-            setState(() {});
-          },
-          child: Text('empty database'),
-        ),
       ),
-      body: ReorderableListView(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        children: <Widget>[
-          for (int index = 0; index < boxCharacters.length; index++)
-            ListTile(
-              key: Key('$index'),
-              title: Text('${boxCharacters.getAt(index).name}'),
-            )
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                int len = boxCharacters.length;
+                //print(len);
+                for (int index = 0; index < len; index++) {
+                  //print(boxCharacters.getAt(0).name);
+                  boxCharacters.deleteAt(0);
+                }
+                setState(() {});
+              },
+              child: const Text('Empty database')),
+          Expanded(
+            child: ReorderableListView(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              children: <Widget>[
+                for (int index = 0; index < boxCharacters.length; index++)
+                  ListTile(
+                    key: Key('$index'),
+                    title: Text('${boxCharacters.getAt(index).name}'),
+                  )
+              ],
+              onReorder: (int oldI, int newI) {
+                setState(() {
+                  if (oldI < newI) {
+                    newI--;
+                  }
+                  final Character char1 = boxCharacters.getAt(oldI);
+                  final Character char2 = boxCharacters.getAt(newI);
+                  boxCharacters.putAt(oldI, char2);
+                  boxCharacters.putAt(newI, char1);
+                });
+              },
+            ),
+          ),
         ],
-        onReorder: (int oldI, int newI) {
-          setState(() {
-            if (oldI < newI) {
-              newI--;
-            }
-            final Character char1 = boxCharacters.getAt(oldI);
-            final Character char2 = boxCharacters.getAt(newI);
-            boxCharacters.putAt(oldI, char2);
-            boxCharacters.putAt(newI, char1);
-          });
-        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
