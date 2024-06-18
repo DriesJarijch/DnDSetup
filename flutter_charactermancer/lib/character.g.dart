@@ -18,7 +18,7 @@ class CharacterAdapter extends TypeAdapter<Character> {
     };
     return Character(
       name: fields[0] as String,
-      Level: fields[1] as int,
+      level: fields[1] as int,
     );
   }
 
@@ -29,7 +29,7 @@ class CharacterAdapter extends TypeAdapter<Character> {
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.Level);
+      ..write(obj.level);
   }
 
   @override

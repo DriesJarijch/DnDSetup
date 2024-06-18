@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'characterlistpage.dart';
 import 'spelllistpage.dart';
+import '../boxes.dart';
+import 'package:flutter_charactermancer/character.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -43,7 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   onPressed: () {
-                    print('Feat editor');
+                    boxCharacters.put(
+                        '${boxCharacters.length}',
+                        Character(
+                            name: 'hans ${boxCharacters.length}', level: 1));
+                    print(boxCharacters.length);
                   },
                   child: const Text('Feat editor')),
             )
