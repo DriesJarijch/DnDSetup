@@ -31,6 +31,13 @@ class _CharacterReorder extends State<CharacterListPage> {
                 setState(() {});
               },
               child: const Text('Empty database')),
+          ElevatedButton(
+              onPressed: () {
+                boxCharacters.values
+                    .where((char) => char.level == 1)
+                    .forEach((char) => print(char.name));
+              },
+              child: const Text('do a query')),
           Expanded(
             child: ReorderableListView(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -67,7 +74,7 @@ class _CharacterReorder extends State<CharacterListPage> {
                 );
               });
           boxCharacters.put('${boxCharacters.length}',
-              Character(name: 'hans ${boxCharacters.length}', level: 1));
+              Character(name: 'hans ${boxCharacters.length}', level: 2));
           print(boxCharacters.length);
           setState(() {});
         },
