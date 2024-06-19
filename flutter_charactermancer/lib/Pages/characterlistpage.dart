@@ -51,12 +51,21 @@ class _CharacterReorder extends State<CharacterListPage> {
               onReorder: (int oldI, int newI) {
                 setState(() {
                   if (oldI < newI) {
+                    final Character char1 = boxCharacters.getAt(oldI);
                     newI--;
+                    for(int i = 0; i < newI-oldI;i++) {
+                      final Character tempchar = boxCharacters.getAt(oldI+1+i);
+                      boxCharacters.putAt(oldI+i, tempchar);
+                    }
+                    boxCharacters.putAt(newI, char1);
+                  } else {
+                    final Character char1 = boxCharacters.getAt(oldI);
+                    for(int i = 0; i < oldI-newI;i++) {
+                      final Character tempchar = boxCharacters.getAt(oldI-1-i);
+                      boxCharacters.putAt(oldI-i, tempchar);
+                    }
+                    boxCharacters.putAt(newI, char1);
                   }
-                  final Character char1 = boxCharacters.getAt(oldI);
-                  final Character char2 = boxCharacters.getAt(newI);
-                  boxCharacters.putAt(oldI, char2);
-                  boxCharacters.putAt(newI, char1);
                 });
               },
             ),
