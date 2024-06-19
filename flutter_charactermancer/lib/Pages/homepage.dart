@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     boxCharacters.put(
                         '${boxCharacters.length}',
                         Character(
-                            name: 'hans ${boxCharacters.length}', level: 1));
+                            name: 'hans ${boxCharacters.length}', level: 1, stats: [8,8,8,8,8,8]));
                     print(boxCharacters.length);
                   },
                   child: const Text('Feat editor')),

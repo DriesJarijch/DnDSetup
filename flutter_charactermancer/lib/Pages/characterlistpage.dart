@@ -83,7 +83,7 @@ class _CharacterReorder extends State<CharacterListPage> {
                 );
               });
           boxCharacters.put('${boxCharacters.length}',
-              Character(name: 'hans ${boxCharacters.length}', level: 2));
+              Character(name: 'hans ${boxCharacters.length}', level: 2, stats: [8,8,8,8,8,8]));
           print(boxCharacters.length);
           setState(() {});
         },
